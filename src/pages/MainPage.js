@@ -9,6 +9,7 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import MainPageCard from "../components/MainPageCard";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -28,64 +29,48 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  card_grid: {
+    marginTop: theme.spacing(3),
+  }
 }));
 
-export default function SignUp() {
+export default function MainPage() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <ShoppingBasketIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Přihlášení
+          Hlavní stránka
         </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Emailová Adresa"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Heslo"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
+        <Grid container spacing={3} justify="center" className={classes.card_grid}>
+          <Grid item xs={4} sm={4} style = {{minWidth: "250px"}}>
+            <MainPageCard
+                      imageurl='vegetablebox.png'
+                      title='Produkty'
+                      description='Popis'
+                      redirectPage={'/Products'}/>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Přihlásit
-          </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                Ještě nemáte účet? Vytvořte si ho.
-              </Link>
-            </Grid>
+          <Grid item xs={4} sm={4} style = {{minWidth: "250px"}}>
+            <MainPageCard
+                      imageurl='vegetablebox.png'
+                      title='Objednávky'
+                      description='Popis'
+                      redirectPage={'/order/list'}/>
           </Grid>
-        </form>
+          <Grid item xs={4} sm={4} style = {{minWidth: "250px"}}>
+            <MainPageCard
+                      imageurl='vegetablebox.png'
+                      title='Profil'
+                      description='Popis'
+                      redirectPage={'/profile'}/>
+          </Grid>
+        </Grid>
+
       </div>
     </Container>
   );

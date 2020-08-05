@@ -1,14 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import FaceIcon from '@material-ui/icons/Face';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -35,19 +32,34 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RegisterPage() {
   const classes = useStyles();
+  const [editing, setEditing] = useState(false);
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <ShoppingBasketIcon />
+          <FaceIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Registrace
+          Profil
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
+
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label="Emailová Adresa"
+                name="email"
+                autoComplete="email"
+                disabled
+                defaultValue={'test mail'}
+              />
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 autoComplete="fname"
@@ -58,58 +70,33 @@ export default function RegisterPage() {
                 id="companyName"
                 label="Název společnosti"
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Emailová Adresa"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Heslo"
-                type="password"
-                id="password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="passwordAgain"
-                label="Heslo znovu"
-                type="passwordAgain"
-                id="passwordAgain"
+                disabled={!editing}
+                defaultValue={'test company name'}
               />
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Registrovat
-          </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                Již máte účet? Přihlašte se.
-              </Link>
-            </Grid>
-          </Grid>
+          {
+            editing ?
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={() => setEditing(false)}
+              >
+                Uložit změny
+              </Button>
+              :
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={() => setEditing(true)}
+              >
+                Upravit
+              </Button>
+          }
         </form>
       </div>
     </Container>

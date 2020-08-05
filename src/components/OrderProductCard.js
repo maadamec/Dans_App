@@ -8,22 +8,39 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import IconButton from "@material-ui/core/IconButton";
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 300,
+    minWidth: 200
   },
 });
 
-export default function MainPageCard(props) {
+export default function OrderProductCard(props) {
   const [imageUrl] = useState(props.imageurl);
-  const [title] = useState(props.title)
+  const [title] = useState(props.title);
   const [description] = useState(props.description);
+  const [units] = useState(props.units);
+  const [value, setValue] = useState( 0);
   const classes = useStyles();
 
+  const increaseValue = () => {
+    setValue(value+1);
+    props.onChange(value+1);
+  }
+
+  const decreaseValue = () => {
+    setValue(value > 0 ? value-1 : value);
+    props.onChange(value > 0 ? value-1 : value);
+  }
+
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
+    <Card className={classes.root} elevation={4}>
+      <CardActionArea disabled>
         <CardMedia
           component="img"
           alt={title}
@@ -40,12 +57,34 @@ export default function MainPageCard(props) {
           </Typography>
         </CardContent>
       </CardActionArea>
+      <CardActions >
+        <Grid container justify={"flex-end"}>
+          <Grid item xs={6}>
+            <Typography variant="h5" component="h2">
+              {value + " " + units}
+            </Typography>
+          </Grid>
+          <Grid item xs={3}>
+            <IconButton color="primary" size={"small"} onClick={increaseValue}>
+              <AddIcon />
+            </IconButton>
+          </Grid>
+          <Grid item xs={3}>
+            <IconButton color="primary" size={"small"} onClick={decreaseValue} disabled={value === 0}>
+              <RemoveIcon />
+            </IconButton>
+          </Grid>
+        </Grid>
+      </CardActions>
     </Card>
   );
 }
 
-MainPageCard.propTypes = {
+OrderProductCard.propTypes = {
   imageurl: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
+  units: PropTypes.string,
+  value: PropTypes.number,
+  onChange: PropTypes.func,
 }
