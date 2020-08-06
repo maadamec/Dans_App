@@ -53,7 +53,7 @@ export default function RegisterPage() {
                 required
                 fullWidth
                 id="email"
-                label="Emailová Adresa XXXXX"
+                label="Emailová Adresa"
                 name="email"
                 autoComplete="email"
                 disabled
