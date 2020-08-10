@@ -18,12 +18,14 @@ import OrdersPage from "./pages/OrdersPage";
 import SwipeableMenu from "./components/SwipableManu";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import UsersPage from "./pages/UsersPage";
+import ProductsPage from "./pages/ProductsPage";
 
 Amplify.configure(awsconfig);
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" >
 
       <Grid container alignItems={'flex-start'} spacing={3}>
         <Grid item xs={12}>
@@ -43,6 +45,13 @@ function App() {
             </Route>
             <Route path="/order/new">
               <NewOrderPage/>
+            </Route>
+
+            <Route path="/products/list">
+              <ProductsPage/>
+            </Route>
+            <Route path="/user/list">
+              <UsersPage/>
             </Route>
             <Route path="/login">
               <LoginPage/>
