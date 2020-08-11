@@ -1,21 +1,12 @@
 import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import FaceIcon from '@material-ui/icons/Face';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import Chip from "@material-ui/core/Chip";
 import Divider from "@material-ui/core/Divider";
-import AccordionActions from "@material-ui/core/AccordionActions";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MaterialTable from "material-table";
+import StorefrontIcon from '@material-ui/icons/Storefront';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -61,7 +52,7 @@ export default function ProductsPage() {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <FaceIcon />
+          <StorefrontIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Produkty

@@ -16,11 +16,9 @@ import MainPage from "./pages/MainPage";
 import NewOrderPage from "./pages/NewOrderPage";
 import OrdersPage from "./pages/OrdersPage";
 import SwipeableMenu from "./components/SwipableManu";
-import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import UsersPage from "./pages/UsersPage";
 import ProductsPage from "./pages/ProductsPage";
-
 Amplify.configure(awsconfig);
 
 function App() {
