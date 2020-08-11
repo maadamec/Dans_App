@@ -19,7 +19,7 @@ import SwipeableMenu from "./components/SwipableManu";
 import Grid from "@material-ui/core/Grid";
 import UsersPage from "./pages/UsersPage";
 import ProductsPage from "./pages/ProductsPage";
-Amplify.configure(awsconfig);
+// Amplify.configure(awsconfig);
 
 function App() {
   return (
