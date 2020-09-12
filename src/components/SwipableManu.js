@@ -15,7 +15,8 @@ import GroupIcon from '@material-ui/icons/Group';
 import HomeIcon from '@material-ui/icons/Home';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import  { Redirect } from 'react-router-dom'
+import PropTypes from "prop-types";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
   list: {
@@ -26,9 +27,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SwipeableMenu() {
+export default function SwipeableMenu(props) {
   const classes = useStyles();
   const [state, setState] = React.useState(false);
+  const [admin, setAdmin] = React.useState(props.admin)
 
   const toggleDrawer = (open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -37,6 +39,10 @@ export default function SwipeableMenu() {
 
     setState(open);
   };
+
+  React.useEffect(() => {
+    setAdmin(props.admin);
+  }, [props.admin]);
 
   const list_of_sites = [
     {text: 'Úvod', icon: <HomeIcon />, redirect: '/'},
@@ -67,37 +73,51 @@ export default function SwipeableMenu() {
         ))}
       </List>
       <Divider />
-      <List>
+      {
+        admin ? <List>
         {list_of_sites_admin.map((item) => (
           <ListItem button key={item.text} onClick={event =>  window.location.href=item.redirect}>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItem>
         ))}
-      </List>
+      </List> : null
+      }
+
     </div>
   );
 
   return (
-    <div>
-      <React.Fragment key={'left'}>
-        <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer(true)}
-            edge="start"
-          >
-            <MenuIcon />
-          </IconButton>
-        <SwipeableDrawer
-          anchor={'left'}
-          open={state}
-          onClose={toggleDrawer( false)}
-          onOpen={toggleDrawer( true)}
-        >
-          {list('left')}
-        </SwipeableDrawer>
-      </React.Fragment>
-    </div>
+    <Grid container alignItems={'flex-start'} spacing={3}>
+      <Grid item xs={12}>
+      </Grid>
+      <Grid item xs={1} justify={"flex-end"} >
+        <div>
+          <React.Fragment key={'left'}>
+            <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={toggleDrawer(true)}
+                edge="start"
+              >
+                <MenuIcon />
+              </IconButton>
+            <SwipeableDrawer
+              anchor={'left'}
+              open={state}
+              onClose={toggleDrawer( false)}
+              onOpen={toggleDrawer( true)}
+            >
+              {list('left')}
+            </SwipeableDrawer>
+          </React.Fragment>
+        </div>
+      </Grid>
+    </Grid>
+
   );
+}
+
+SwipeableMenu.propTypes = {
+  admin: PropTypes.bool
 }

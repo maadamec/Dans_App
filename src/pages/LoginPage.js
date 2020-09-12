@@ -9,6 +9,9 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Cookie from 'js-cookie'
+import Alert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -32,10 +35,67 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [email, setEmail] = React.useState("")
+  const [password, setPassword] = React.useState("")
+  const [popperState, setPopperState] = React.useState({
+      text: "",
+      severity: "",
+      open: false
+  });
+
+  const handleChangeEmail = (event) => {
+    setEmail( event.target.value);
+  }
+  const handleChangePassword = (event) => {
+    setPassword( event.target.value);
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setPopperState({...popperState, open: false});
+  };
+
+  async function sendLoginRequest() {
+    const res = await fetch("http://localhost:5000" + "/auth/login", {
+     method: 'post',
+     headers: new Headers({
+       'Accept': '*/*',
+       'Cache-Control': 'no-cache',
+       'Content-Type': 'application/json'
+       }),
+      body: JSON.stringify({
+        'email': email.toLowerCase(),
+        'password': password
+        })
+      })
+
+    res.json()
+      .then(res => {
+        if(res.status === "success" && res.auth_token !== undefined){
+          Cookie.set("token", res.auth_token);
+          window.location.href='/'
+        } else {
+          setPopperState({severity: "error", open: true, text: res.message});
+        }
+        console.log(res)
+      })
+    };
+
+  const handleSubmit = (event) => {
+    sendLoginRequest()
+  }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <div>
+      <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <Snackbar open={popperState.open} autoHideDuration={2000} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'center'}}>
+        <Alert onClose={popperState.open} severity={popperState.severity} variant="filled">
+          {popperState.text}
+        </Alert>
+      </Snackbar>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <ShoppingBasketIcon />
@@ -43,7 +103,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Přihlášení
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate >
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -54,6 +114,8 @@ export default function SignUp() {
                 label="Emailová Adresa"
                 name="email"
                 autoComplete="email"
+                onChange={handleChangeEmail}
+                value={email}
               />
             </Grid>
             <Grid item xs={12}>
@@ -66,15 +128,18 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={handleChangePassword}
+                value={password}
               />
             </Grid>
           </Grid>
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit}
           >
             Přihlásit
           </Button>
@@ -88,5 +153,7 @@ export default function SignUp() {
         </form>
       </div>
     </Container>
+    </div>
+
   );
 }

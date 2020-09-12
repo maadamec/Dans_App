@@ -1,37 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import './App.css';
-import Amplify, { Auth } from 'aws-amplify';
-import awsconfig from './aws-exports';
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import MainPage from "./pages/MainPage";
 import NewOrderPage from "./pages/NewOrderPage";
 import OrdersPage from "./pages/OrdersPage";
-import SwipeableMenu from "./components/SwipableManu";
-import Grid from "@material-ui/core/Grid";
 import UsersPage from "./pages/UsersPage";
 import ProductsPage from "./pages/ProductsPage";
-// Amplify.configure(awsconfig);
 
 function App() {
   return (
     <div className="App" >
-
-      <Grid container alignItems={'flex-start'} spacing={3}>
-        <Grid item xs={12}>
-        </Grid>
-        <Grid item xs={1} justify={"flex-end"} >
-          <SwipeableMenu/>
-        </Grid>
-      </Grid>
       <Router>
         <div>
           <Switch>
@@ -44,18 +28,14 @@ function App() {
             <Route path="/order/new">
               <NewOrderPage/>
             </Route>
-
             <Route path="/products/list">
               <ProductsPage/>
             </Route>
             <Route path="/user/list">
-              <UsersPage/>
+             <UsersPage/>
             </Route>
             <Route path="/login">
               <LoginPage/>
-            </Route>
-            <Route path="/register">
-              <RegisterPage/>
             </Route>
             <Route path="/">
               <MainPage/>

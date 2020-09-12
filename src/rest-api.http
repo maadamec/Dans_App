@@ -1,0 +1,189 @@
+
+### Logout
+
+POST http://localhost:5000/auth/logout
+Accept: */*
+Cache-Control: no-cache
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTc5OTM0MTUsImlhdCI6MTU5NzkwNzAxNSwic3ViIjoxfQ._cQF4D_0Fo5wXnBW5f6Un_was3dM2voBidkliDMBKg4
+
+{"email":"matej16@seznam.cz", "password": "testpassword"}
+
+<> 2020-08-20T061031.200.json
+<> 2020-08-20T061014.401.json
+
+
+### Login
+
+POST http://localhost:5000/auth/login
+Accept: */*
+Cache-Control: no-cache
+Authorization:
+Content-Type: application/json
+
+{"email":"matej16@seznam.cz", "password": "testpassword"}
+
+<> 2020-08-20T061324.200.json
+
+### User auth check
+GET http://localhost:5000/auth/status
+Accept: */*
+Cache-Control: no-cache
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTk4NjIxMjEsImlhdCI6MTU5OTc3NTcyMSwic3ViIjoxN30.Iyl3xF7eO_FbksiFynwkMa4g34x4C3l-zFtrtpmA028
+
+### Register
+
+POST http://localhost:5000/auth/register
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"email":"matej16@seznam.cz", "password": "testpassword"}
+
+<> 2020-08-20T061959.201.json
+
+
+
+
+### Product Add
+
+POST http://localhost:5000/product
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTc5OTM0MTUsImlhdCI6MTU5NzkwNzAxNSwic3ViIjoxfQ._cQF4D_0Fo5wXnBW5f6Un_was3dM2voBidkliDMBKg4
+
+{"name":"Brokolice", "unit": "kus", "price_per_unit": 55}
+
+<> 2020-08-20T063559.201.json
+<> 2020-08-20T063437.500.html
+<> 2020-08-20T063337.500.html
+<> 2020-08-20T063203.500.html
+<> 2020-08-20T063114.500.html
+<> 2020-08-20T063037.500.html
+
+### Product List
+
+GET http://localhost:5000/product
+Accept: */*
+Cache-Control: no-cache
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTgwMjY0MDQsImlhdCI6MTU5Nzk0MDAwNCwic3ViIjoxfQ.DXD2yVjVnw9ZsDlPkACbq9hCQNlvsnJCcIQ9YU0lTPQ
+
+
+<> 2020-08-20T061423.200.json
+<> 2020-08-20T061353.200.json
+<> 2020-08-20T060830.200.json
+
+### Product List one
+
+GET http://localhost:5000/product/4
+Accept: */*
+Cache-Control: no-cache
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTgwMjY0MDQsImlhdCI6MTU5Nzk0MDAwNCwic3ViIjoxfQ.DXD2yVjVnw9ZsDlPkACbq9hCQNlvsnJCcIQ9YU0lTPQ
+
+
+<> 2020-08-20T061423.200.json
+<> 2020-08-20T061353.200.json
+<> 2020-08-20T060830.200.json
+
+### Product update
+PUT http://localhost:5000/product
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTc5OTM0MTUsImlhdCI6MTU5NzkwNzAxNSwic3ViIjoxfQ._cQF4D_0Fo5wXnBW5f6Un_was3dM2voBidkliDMBKg4
+
+{"id": 4 ,"name":"Mrkev", "unit": "kus", "price_per_unit": 55}
+
+### Product delete
+DELETE http://localhost:5000/product/4
+Accept: */*
+Cache-Control: no-cache
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTgwMjY0MDQsImlhdCI6MTU5Nzk0MDAwNCwic3ViIjoxfQ.DXD2yVjVnw9ZsDlPkACbq9hCQNlvsnJCcIQ9YU0lTPQ
+
+
+
+
+
+# USERs
+### List Users
+
+GET http://localhost:5000/user
+Accept: */*
+Cache-Control: no-cache
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTgwMjY0MDQsImlhdCI6MTU5Nzk0MDAwNCwic3ViIjoxfQ.DXD2yVjVnw9ZsDlPkACbq9hCQNlvsnJCcIQ9YU0lTPQ
+
+### List one user
+
+GET http://localhost:5000/user/3
+Accept: */*
+Cache-Control: no-cache
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTgwMjY0MDQsImlhdCI6MTU5Nzk0MDAwNCwic3ViIjoxfQ.DXD2yVjVnw9ZsDlPkACbq9hCQNlvsnJCcIQ9YU0lTPQ
+
+### Product update
+PUT http://localhost:5000/user
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTc5OTM0MTUsImlhdCI6MTU5NzkwNzAxNSwic3ViIjoxfQ._cQF4D_0Fo5wXnBW5f6Un_was3dM2voBidkliDMBKg4
+
+{
+  "admin": true,
+  "delivery_address": null,
+  "email": "adam16@seznam.cz",
+  "id": 3,
+  "invoice_address": null,
+  "name": null,
+  "note": null,
+  "password": "$2b$04$mPZQF79dVCBOywbPCFM9ZO1JXZG8rtSh9QEqGolOIhztQFc3/COma",
+  "phone": null
+}
+
+### Product delete
+DELETE http://localhost:5000/user/3
+Accept: */*
+Cache-Control: no-cache
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTgwMjY0MDQsImlhdCI6MTU5Nzk0MDAwNCwic3ViIjoxfQ.DXD2yVjVnw9ZsDlPkACbq9hCQNlvsnJCcIQ9YU0lTPQ
+
+### User Add
+POST http://localhost:5000/user
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTc5OTM0MTUsImlhdCI6MTU5NzkwNzAxNSwic3ViIjoxfQ._cQF4D_0Fo5wXnBW5f6Un_was3dM2voBidkliDMBKg4
+
+{
+  "admin": true,
+  "delivery_address": null,
+  "email": "matej@seznam.cz",
+  "invoice_address": null,
+  "name": "ahoj jak se mas",
+  "note": null,
+  "password": "$2b$04$mPZQF79dVCBOywbPCFM9ZO1JXZG8rtSh9QEqGolOIhztQFc3/COma",
+  "phone": null
+}
+
+### Order
+GET http://localhost:5000/order
+Accept: */*
+Cache-Control: no-cache
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTk2MDE0NzQsImlhdCI6MTU5OTUxNTA3NCwic3ViIjoxNX0.oF6T3cA_uap7QJwyXjjYk7OECR2oOt35hTVTohT1Q9I
+
+### Order add
+POST http://localhost:5000/order
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTk2NzEzNDMsImlhdCI6MTU5OTU4NDk0Mywic3ViIjoxN30.mr62xifK17z1UpTeYFCK4RaBhhdkiq2IMvNPA3JH1Uo
+
+{
+  "products": [
+    {
+      "product_id": 69,
+      "amount": 5
+    },
+    {
+      "product_id": 70,
+      "amount": 50
+    }
+  ]
+}
